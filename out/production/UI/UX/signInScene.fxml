@@ -62,6 +62,9 @@
                </GridPane.margin>
             </TextField>
             <Button fx:id="continueButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#continueClicked" text="continue" visible="false" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+            <TextField fx:id="firstTimeName" maxWidth="150.0" promptText="Enter User Name" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+            <Button fx:id="choosePhotoButton" mnemonicParsing="false" onAction="#choosePhotoButtonClicked" prefHeight="25.0" prefWidth="148.0" text="Choose photo" textAlignment="CENTER" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+            <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#signUpButtonClicked" text="Sign up" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </center>

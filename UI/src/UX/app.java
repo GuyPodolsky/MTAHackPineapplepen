@@ -5,9 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import server.User;
 
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -22,6 +25,7 @@ public class app extends Application {
     private SignInController signInController;
     private startMeetingController startMeetingController;
     //private I user; //TODO:
+    User user;
 
 
 
@@ -53,7 +57,17 @@ public class app extends Application {
         signInController.continueClickedProperty().addListener((source)->{
             if(signInController.isContinueClicked()){
                 try {
+                    initStartMeetingScene();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+//
 
+        });
+        signInController.signUpClickedProperty().addListener((source)->{
+            if(signInController.isSignUpClicked()){
+                try {
                     initStartMeetingScene();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -80,5 +94,6 @@ public class app extends Application {
         });
 
     }
+
 
 }
