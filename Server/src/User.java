@@ -4,19 +4,30 @@ import javafx.scene.image.ImageView;
 
 import java.io.*;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class User implements Serializable {
     private String name;
     private Node pic;
     private int id;
-    private static int counter=1; //starts from one and grow each user
-    private String saverFile = "Server\\src\\resource\\saver.bin";
+    private static int idGenerator =1; //starts from one and grow each user
+    private boolean isHost;
+    private final String saverFile = "Server\\src\\resource\\saver.bin";
+
+    public String getName() { return name; }
+    public Node getPic() { return pic; }
+    public int getId() { return id; }
+    public boolean getIsHost() { return isHost; }
+
+    public void setName(String name) { this.name = name; }
+    public void setPic(Node pic) { this.pic = pic; }
+    public void setHost(boolean host) { isHost = host; }
+
     //first time ctor    // save to text first time use
-    public User(String name, String photoLink) {
-        this.id = counter;
-        counter++;
+    public User(String name, String photoLink, boolean host) {
+        this.id = idGenerator;
+        idGenerator++;
         this.name = name;
+        this.isHost = host;
         try { // grab a smurf from the path if it is there otherwise just use a green square.
             pic = new ImageView(new Image(photoLink)); //"http://bluebuddies.com/gallery/title/jpg/Smurf_Fun_100x100.jpg"
         } catch (Exception e) {
@@ -29,7 +40,7 @@ public class User implements Serializable {
         saver(); // save to file
     }
 
-    public User() {}
+    public User() {} // maybe delete
 
     //other uses- read from the file
     public User(ObjectInputStream inn) {
@@ -37,9 +48,10 @@ public class User implements Serializable {
                      new ObjectInputStream(
                              new FileInputStream(saverFile))) {
             User temp = (User) in.readObject(); ///////////////////////////// supposed to be the user in
-            this.id = temp.id;
-            this.name = temp.name;
-            this.pic = temp.pic;
+            this.id = temp.getId();
+            this.name = temp.getName();
+            this.pic = temp.getPic();
+            this.isHost = temp.getIsHost();
 
         } catch (FileNotFoundException ex) {
             System.out.println("ERROR! 1Something unexpected occurred:");
@@ -92,18 +104,6 @@ public class User implements Serializable {
                 ", pic=" + pic +
                 ", id=" + id +
                 '}';
-    }
-
-    public void setPic(Node pic) {
-        this.pic = pic;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Node getPic() {
-        return pic;
     }
 
     public UserDTO toDto() {
