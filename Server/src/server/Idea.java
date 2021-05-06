@@ -1,4 +1,6 @@
 package server;
+import chat.Message;
+
 import java.util.Vector;
 
 public class Idea {

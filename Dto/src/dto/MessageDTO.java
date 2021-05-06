@@ -1,6 +1,6 @@
+package dto;
+
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
 
 public class MessageDTO {
     private static int idGen = 1;
@@ -10,7 +10,7 @@ public class MessageDTO {
     private final UserDTO sender;
     private final String message;
 
-    MessageDTO(UserDTO _sender,String _message) {
+   public MessageDTO(UserDTO _sender,String _message) {
         this.id = idGen++;
         this.dateTimeStamp = LocalDateTime.now();
         this.sender = _sender;

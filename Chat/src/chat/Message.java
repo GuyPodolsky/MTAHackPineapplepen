@@ -1,4 +1,7 @@
 package chat;
+import dto.MessageDTO;
+import server.User;
+
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -40,7 +43,7 @@ public class Message {
     }
 
     public MessageDTO toDto() {
-        return new MessageDTO (this.sender.toDto(), this.message);
+        return new MessageDTO(this.sender.toDto(), this.message);
     }
 
 }

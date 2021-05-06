@@ -1,5 +1,7 @@
 package server;
 
+import chat.*;
+
 public class DisscusionEngine {
     private IdeaNode disTree; //root - first liked idea..
     private ChatEngine disChat;

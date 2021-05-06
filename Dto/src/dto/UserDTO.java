@@ -1,3 +1,5 @@
+package dto;
+
 import javafx.scene.Node;
 
 public class UserDTO {
