@@ -1,17 +1,19 @@
 import java.util.Vector;
 
 public class Idea {
-    public static int ideasCount = 0;
+    public static int idGen = 0;
     private final int ID;
     private int likes, dislikes;
-    private boolean isLiked, isDisLiked, isOwner;
+    private boolean isLiked, isDisLiked;
+    private final User owner;
 
     private String ideaText;
     private Vector<Message> comments;
 
-    public Idea(String text) {
+    public Idea(String text,User _owner) {
         ideaText = text;
-        ID = ++ideasCount;
+        owner=_owner;
+        ID = ++idGen;
         likes = 0;
         dislikes = 0;
     }
@@ -52,13 +54,67 @@ public class Idea {
 
     public boolean isDisLiked() { return isDisLiked; }
 
-    public boolean isOwner() { return isOwner; }
-
-    public void addLike(){
-        likes++;
+    public void setLiked(boolean liked) {
+        isLiked = liked;
     }
 
-    public void addDislike(){
-        dislikes++;
+    public void setDisLiked(boolean disLiked) {
+        isDisLiked = disLiked;
     }
+
+    public void like(){
+        if(!this.isLiked()) {
+            likes++;
+            setLiked(true);
+            if(this.isDisLiked())
+            {
+                this.dislikes--;
+                setDisLiked(false);
+            }
+        }
+    }
+
+    public void dislike(){
+        if(!this.isDisLiked())
+        {
+            dislikes++;
+            setDisLiked(true);
+            if(this.isLiked()){
+                this.likes--;
+                setLiked(false);
+            }
+        }
+    }
+
+    public static int getIdGen() {
+        return idGen;
+    }
+
+    public void setIdeaText(String ideaText) {
+        this.ideaText = ideaText;
+    }
+
+    public void addComments(Message ... _comments) {
+        for(Message comment: _comments)
+            comments.add(comment);
+    }
+
+    public void delComments(Message ... messages)
+    {
+        if(hasComments(messages))
+        {
+            for(Message c : messages)
+                comments.remove(c);
+        }
+    }
+
+    public boolean hasComments(Message ... messages)
+    {
+        for (Message c: messages)
+            if(!this.comments.contains(c))
+                return false;
+        return true;
+    }
+
+
 }
