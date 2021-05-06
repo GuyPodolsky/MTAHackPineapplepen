@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Vector;
 
 public class IdeaNode {
 
@@ -26,4 +27,21 @@ public class IdeaNode {
         public int getID() {
             return topic.getID();
         }
+
+        /*public IdeaNodeDTO toDto() {
+            Vector<MessageDTO> comments= new Vector<>();
+
+            for(Message com : topic.getComments()) {
+                comments.add(com.toDto());
+            }
+            IdeaDTO rTopic = new IdeaDTO(topic.getID(), topic.getLikes(), topic.getDislikes(), topic.getIdeaText(),comments);
+            Map<Integer, IdeaNodeDTO> rfollowingIdeas = new HashMap<>();
+
+            for (Integer key : followingIdeas.keySet()) {
+                rfollowingIdeas.put(key,followingIdeas.get(key).toDto());
+            }
+
+            //return
+
+        }*/
 }

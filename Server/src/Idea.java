@@ -4,7 +4,6 @@ public class Idea {
     public static int ideasCount = 0;
     private final int ID;
     private int likes, dislikes;
-    private int size;
 
     private String ideaText;
     private Vector<Message> comments;

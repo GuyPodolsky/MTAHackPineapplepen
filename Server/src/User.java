@@ -105,6 +105,10 @@ public class User implements Serializable {
     public Node getPic() {
         return pic;
     }
+
+    public UserDTO toDto() {
+        return new UserDTO(this.name, this.pic, this.id);
+    }
 }
 
 
