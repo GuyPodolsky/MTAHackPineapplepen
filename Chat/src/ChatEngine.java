@@ -7,6 +7,7 @@ public class ChatEngine {
     private final int id;
     private Map<Integer,Message> messages;
 
+
     public ChatEngine() {
         this.id = idGen++;
         messages = new HashMap<>();
@@ -37,7 +38,7 @@ public class ChatEngine {
     }
 
     public void delMessagesByID(int ... messagesIDs) {
-        delMessagesByID("the user",messagesIDs);
+        delMessagesByID("the user", messagesIDs);
     }
 
     public void delMessagesByID(String UserName, int ... messageIDs) {
@@ -54,6 +55,14 @@ public class ChatEngine {
     {
         for (int id: messageIDs)
             if(this.messages.get(id)==null)
+                return false;
+        return true;
+    }
+
+    public boolean isAuthorized(int ... messageIDs)
+    {
+        for (int id: messageIDs)
+            if(!(this.messages.get(id).isOwner()))
                 return false;
         return true;
     }
