@@ -12,4 +12,8 @@ public class DiscussionFlowSummary {
     public DiscussionFlowSummary(IdeaNode topic) {
         mainTopic = topic;
     }
+
+    public IdeaNode getDiscussionFlowSummary() {
+        return mainTopic;
+    }
 }
