@@ -1,10 +1,13 @@
+import java.util.Vector;
+
 public class Idea {
     public static int ideasCount = 0;
     private final int ID;
     private int likes, dislikes;
     private int size;
+
     private String ideaText;
-    private String[] comments;
+    private Vector<Message> comments;
 
     public Idea(String text) {
         ideaText = text;
@@ -25,12 +28,24 @@ public class Idea {
         return likes;
     }
 
-    public String[] getComments() {
+    public int getDislikes() {
+        return dislikes;
+    }
+
+    public Vector<Message> getComments() {
         return comments;
     }
 
-    public String getComment(int i){
-        return comments[i];
+    public Message getComment(int i){
+        return comments.get(i);
+    }
+
+    public String getCommentText(int i){
+        return comments.get(i).getMessage();
+    }
+
+    public void addComment(Message msg) {
+        comments.add(msg);
     }
 
     public void addLike(){
