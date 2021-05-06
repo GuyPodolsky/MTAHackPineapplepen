@@ -20,6 +20,7 @@ public class SignInController implements Initializable {
     public BorderPane signInPane;
     public Button continueButton;
     private BooleanProperty continueClicked = new SimpleBooleanProperty(this, "User connected");
+    private String saveGuestName;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -40,8 +41,11 @@ public class SignInController implements Initializable {
     }
 
     public void continueClicked(ActionEvent actionEvent) {
-        if(!guestName.getText().isEmpty())
+        // save the user name
+        if(!guestName.getText().isEmpty()) {
+            saveGuestName = guestName.getText();
             setContinueClicked(true);
+        }
     }
 
     public boolean isContinueClicked() {
@@ -63,4 +67,7 @@ public class SignInController implements Initializable {
         guestButton.setDisable(true);
         setContinueClicked(true);
     }
+
+    public String getSaveGuestName(){return saveGuestName;}
+
 }
