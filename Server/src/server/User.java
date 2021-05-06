@@ -33,7 +33,24 @@ public class User implements Serializable {
         try { // grab a smurf from the path if it is there otherwise just use a green square.
             pic = new ImageView(new Image(photoLink)); //"http://bluebuddies.com/gallery/title/jpg/Smurf_Fun_100x100.jpg"
         } catch (Exception e) {
-            pic = new ImageView(new Image("default_pic.jpg"));
+            pic = new ImageView(new Image("resource/default_pic.jpg"));
+        }
+        pic.setTranslateZ(150);
+        pic.setOpacity(0.7);
+        pic.setMouseTransparent(true);
+
+        saver(); // save to file
+    }
+
+    public User(String name, File photo) {
+        this.id = idGenerator;
+        idGenerator++;
+        this.name = name;
+        this.isHost = false;
+        try { // grab a smurf from the path if it is there otherwise just use a green square.
+            Image picture = (new Image(String.valueOf(photo.toURL()))); //"http://bluebuddies.com/gallery/title/jpg/Smurf_Fun_100x100.jpg"
+        } catch (Exception e) {
+            pic = new ImageView(new Image("resource/default_pic.jpg"));
         }
         pic.setTranslateZ(150);
         pic.setOpacity(0.7);
