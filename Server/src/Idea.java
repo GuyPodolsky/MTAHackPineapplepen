@@ -46,10 +46,6 @@ public class Idea {
         return comments.get(i).getMessage();
     }
 
-    public void addComment(Message msg) {
-        comments.add(msg);
-    }
-
     public boolean isLiked() { return isLiked; }
 
     public boolean isDisLiked() { return isDisLiked; }
