@@ -46,10 +46,6 @@ public class Idea {
         return comments.get(i).getMessage();
     }
 
-    public void addComment(Message msg) {
-        comments.add(msg);
-    }
-
     public boolean isLiked() { return isLiked; }
 
     public boolean isDisLiked() { return isDisLiked; }
@@ -95,22 +91,22 @@ public class Idea {
     }
 
     public void addComments(Message ... _comments) {
-        for(Message comment: _comments)
+        for(Message comment : _comments)
             comments.add(comment);
     }
 
-    public void delComments(Message ... messages)
+    public void delComments(Message ... _comments)
     {
-        if(hasComments(messages))
+        if(hasComments(_comments))
         {
-            for(Message c : messages)
+            for(Message c : _comments)
                 comments.remove(c);
         }
     }
 
-    public boolean hasComments(Message ... messages)
+    public boolean hasComments(Message ... _comments)
     {
-        for (Message c: messages)
+        for (Message c: _comments)
             if(!this.comments.contains(c))
                 return false;
         return true;

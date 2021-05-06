@@ -24,7 +24,7 @@ public class IdeaNode {
             followingIdeas.remove(ID);
         }
 
-        public void editIdea(String text) { topic.setIdeaText();}
+        public void editIdea(String text) { topic.setIdeaText(text);}
 
         public int getID() {
             return topic.getID();
@@ -42,8 +42,19 @@ public class IdeaNode {
             for (Integer key : followingIdeas.keySet()) {
                 rfollowingIdeas.put(key,followingIdeas.get(key).toDto());
             }
-
             //return
-
         }*/
+
+    public void like(){ topic.like(); }
+
+    public void dislike() { topic.dislike(); }
+
+    public boolean isLiked() { return topic.isLiked(); }
+
+    public boolean isDisLiked() { return topic.isDisLiked(); }
+
+    public void addComments(Message ... _comments) { topic.addComments(_comments);}
+
+    public void delComments(Message ... _comments) { topic.delComments(_comments); }
+
 }
