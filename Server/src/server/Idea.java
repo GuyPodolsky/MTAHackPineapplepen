@@ -33,6 +33,10 @@ public class Idea {
         return likes;
     }
 
+    public int getSumLikes() {
+        return likes-dislikes;
+    }
+
     public int getDislikes() {
         return dislikes;
     }

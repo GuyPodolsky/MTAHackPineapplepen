@@ -2,6 +2,11 @@ package server;
 
 import chat.*;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 public class DisscusionEngine {
     private IdeaNode disTree; //root - first liked idea..
     private ChatEngine disChat;
@@ -60,7 +65,7 @@ public class DisscusionEngine {
             disTree = nextIdea;
         }
         else {
-            // not good throw something- there is not a node like this
+            throw new NullPointerException("the id isn't a child of this disTree");// not good throw something- there is not a node like this
         }
     }
 
@@ -78,15 +83,45 @@ public class DisscusionEngine {
         flowTree=node;
     }
 
-    public void helperPrintFlow() {
-        while(flowTree.getParent() != null) {
-            flowTree = flowTree.getParent();
+    public void printFlow() { // called when program is finished
+        IdeaNode root = getDisTree();
+        while(root.getParent() != null) {
+            root = root.getParent();
         }
-        printFlow();
+        String str = "out.txt"
+        try (ObjectOutputStream out =
+                     new ObjectOutputStream(
+                             new FileOutputStream(str))) {
+            helperPrintFlow(root); //out.writeObject(str);
+            out.flush();
+
+
+            //System.out.println("Successfully saved file!");
+        } catch (FileNotFoundException ex) {
+            System.out.println("ERROR! You've entered an invalid file name!");
+        } catch (IOException e) {
+            System.out.println("ERROR! Something unexpected occurred:");
+            System.out.println(e.getMessage());
+        }
+        // open file here and send to the helperPrint than close here
+
+
     }
 
-    public void printFlow() {
-        //how to print map by order from left to write
+    public void helperPrintFlow(IdeaNode root) {
+        String str = "1. ";
+        for (Integer currId : root.getFollowingIdeas().keySet()) {
+            if(root.getIdea(currId).isMarked()) { //mark somehow- javafx or admin like, or my func add to flow
+                //add to the bin file with number and go to its child
+
+                helperPrintFlow(root.getIdea(currId));
+            }
+            // else- do nothing to to the next brother.
+        }
     }
+
+
+
+
 
 }
