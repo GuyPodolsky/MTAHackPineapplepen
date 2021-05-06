@@ -1,4 +1,4 @@
-/*
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,9 +14,11 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
+import java.util.Scanner;
 
 public class mainapp extends Application {
 
+    /*
     @Override
     public void start(Stage primaryStage) {
 
@@ -76,10 +78,18 @@ public class mainapp extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
+*/
     public static void main(String[] args) {
-        Thread.currentThread().setName("main");
-        launch(args);
+        Scanner input = new Scanner(System.in);
+        String CorS = input.nextLine();
+        if(CorS.equals("c")) {
+            new Client().startClient();
+        }
+        else {
+            new Server("localhost", 8090).startServer();
+        }
+        //Thread.currentThread().setName("main");
+        //launch(args);
     }
 
-}*/
+}
