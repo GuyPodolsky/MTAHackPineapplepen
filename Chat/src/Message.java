@@ -10,7 +10,6 @@ public class Message {
     private final LocalDateTime dateTimeStamp;
     private final User sender;
     private String message;
-    private boolean isOwner;
 
     Message(User _sender, String _message) {
         this.id = idGen++;
@@ -22,8 +21,6 @@ public class Message {
     public int getId() {
         return id;
     }
-
-    public boolean isOwner() { return isOwner; }
 
     public LocalDateTime getDateTimeStamp() {
         return dateTimeStamp;

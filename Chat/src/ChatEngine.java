@@ -58,12 +58,4 @@ public class ChatEngine {
                 return false;
         return true;
     }
-
-    public boolean isAuthorized(int ... messageIDs)
-    {
-        for (int id: messageIDs)
-            if(!(this.messages.get(id).isOwner()))
-                return false;
-        return true;
-    }
 }

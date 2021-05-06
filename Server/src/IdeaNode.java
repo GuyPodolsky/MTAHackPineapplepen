@@ -20,9 +20,11 @@ public class IdeaNode {
             followingIdeas.put(ideaNode.getID(), ideaNode);
         }
 
-        public void removeIdeaByID(int ID) {
+        public void deleteIdeaByID(int ID) {
             followingIdeas.remove(ID);
         }
+
+        public void editIdea(String text) { topic.setIdeaText();}
 
         public int getID() {
             return topic.getID();
