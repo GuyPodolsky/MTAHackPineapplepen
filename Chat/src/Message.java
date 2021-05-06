@@ -1,12 +1,6 @@
 import java.time.LocalDateTime;
 import java.util.*;
 
-class User{}  //TODO: merge with Ofek's work
-class Idea{   //TODO: merge with Tom's work
-    Idea(){}
-    int getID(){return 0;}
-}
-
 
 public class Message  {
 

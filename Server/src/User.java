@@ -4,6 +4,7 @@ import javafx.scene.image.ImageView;
 
 import java.io.*;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class User implements Serializable {
     private String name;
@@ -28,8 +29,10 @@ public class User implements Serializable {
         saver(); // save to file
     }
 
+    public User() {}
+
     //other uses- read from the file
-    public User() {
+    public User(ObjectInputStream inn) {
         try (ObjectInputStream in =
                      new ObjectInputStream(
                              new FileInputStream(saverFile))) {
@@ -89,6 +92,18 @@ public class User implements Serializable {
                 ", pic=" + pic +
                 ", id=" + id +
                 '}';
+    }
+
+    public void setPic(Node pic) {
+        this.pic = pic;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Node getPic() {
+        return pic;
     }
 }
 
