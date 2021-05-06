@@ -1,48 +1,40 @@
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
-
-public class Message {
-
+public class MessageDTO {
     private static int idGen = 1;
 
     private final int id;
     private final LocalDateTime dateTimeStamp;
-    private final User sender;
-    private String message;
-    private boolean isOwner;
+    private final UserDTO sender;
+    private final String message;
 
-    Message(User _sender, String _message) {
+    MessageDTO(UserDTO _sender,String _message) {
         this.id = idGen++;
         this.dateTimeStamp = LocalDateTime.now();
         this.sender = _sender;
         this.message = _message;
     }
 
+    public static int getIdGen() {
+        return idGen;
+    }
+
     public int getId() {
         return id;
     }
-
-    public boolean isOwner() { return isOwner; }
 
     public LocalDateTime getDateTimeStamp() {
         return dateTimeStamp;
     }
 
-    public User getSender() {
+    public UserDTO getSender() {
         return sender;
     }
 
     public String getMessage() {
         return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public MessageDTO toDto() {
-        return new MessageDTO (this.sender.toDto(), this.message);
     }
 
 }

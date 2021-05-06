@@ -4,7 +4,7 @@ public class Idea {
     public static int ideasCount = 0;
     private final int ID;
     private int likes, dislikes;
-    private int size;
+    private boolean isLiked, isDisLiked, isOwner;
 
     private String ideaText;
     private Vector<Message> comments;
@@ -47,6 +47,12 @@ public class Idea {
     public void addComment(Message msg) {
         comments.add(msg);
     }
+
+    public boolean isLiked() { return isLiked; }
+
+    public boolean isDisLiked() { return isDisLiked; }
+
+    public boolean isOwner() { return isOwner; }
 
     public void addLike(){
         likes++;
