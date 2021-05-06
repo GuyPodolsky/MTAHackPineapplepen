@@ -23,17 +23,25 @@ public class SignInController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        //guestName.selectedTextProperty().addListener((source)->{continueButton.setDisable(false);});
+        //guestName.getProperties().addListener((source)->{if(!guestName.getText().isEmpty()){continueButton.setDisable(false);});
+     //guestName.textProperty()
     }
     public void guestButtonClicked(ActionEvent actionEvent) {
+        userButton.setDisable(true);
+        guestButton.setDisable(true);
         guestName.setVisible(true);
+        continueButton.setDisable(true);
+        guestName.textProperty().addListener((source)->{if(!guestName.getText().isEmpty()) continueButton.setDisable(false);
+        else continueButton.setDisable(true);});
         continueButton.setVisible(true);
         // enter the new user to the system
         // start the next scene
     }
 
     public void continueClicked(ActionEvent actionEvent) {
-        setContinueClicked(true);
+        if(!guestName.getText().isEmpty())
+            setContinueClicked(true);
     }
 
     public boolean isContinueClicked() {
@@ -46,5 +54,13 @@ public class SignInController implements Initializable {
 
     public void setContinueClicked(boolean continueClicked) {
         this.continueClicked.set(continueClicked);
+    }
+
+    public void userButtonClicked(ActionEvent actionEvent) {
+
+        // TODO: how do we sign in the old users where is the data will be saved
+        userButton.setDisable(true);
+        guestButton.setDisable(true);
+        setContinueClicked(true);
     }
 }

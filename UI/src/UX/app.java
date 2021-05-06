@@ -18,7 +18,7 @@ public class app extends Application {
     private Scene disccushScene;
     private SignInController signInController;
     private startMeetingController startMeetingController;
-    //private User user;
+    //private User user; TODO:
 
 
     @Override
@@ -64,12 +64,14 @@ public class app extends Application {
         Parent load = fl.load(url.openStream());
         startMeetingController = fl.getController();
         startMeetingScene = new Scene(load, 600, 600);
+        // startMeetingController.setUserNameLabel(user.getName()); TODO:
         this.primaryStage.setScene(startMeetingScene);
         startMeetingController.buttonClickedProperty().addListener((source)->{
-            if(signInController.isContinueClicked()){
+            if(startMeetingController.isButtonClicked()){
 
             }
         });
+
     }
 
 }
