@@ -13,7 +13,7 @@ public class DiscussionFlowSummary {
         mainTopic = topic;
     }
 
-    public IdeaNode getDiscussionFlowSummary() {
+    public IdeaNode get() {
         return mainTopic;
     }
 }
