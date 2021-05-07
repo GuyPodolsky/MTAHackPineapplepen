@@ -106,8 +106,6 @@ public class app extends Application {
             if(startMeetingController.isButtonClicked()){
                 try {
                     hostIP = startMeetingController.getSaveID();
-                    de = new DisscusionEngine();
-                    client = new Client(de,hostIP,924);
                     initThirdWindow();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -117,10 +115,7 @@ public class app extends Application {
         startMeetingController.hostbuttonClickedProperty().addListener((source)->{
             if(startMeetingController.isHostbuttonClicked()){
                 try {
-                    hostIP = startMeetingController.getSaveID();
                     user.setHost(true);
-
-                    client = new Client(de,hostIP,924);
                     initThirdWindow();
                 } catch (IOException e) {
                     e.printStackTrace();

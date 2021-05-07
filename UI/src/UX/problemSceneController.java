@@ -86,11 +86,11 @@ public class problemSceneController implements Initializable {
 
     }
 
-    public void addTab(ActionEvent actionEvent) {
+/*    public void addTab(ActionEvent actionEvent) {
         Tab addTab = new Tab("+");
         addTab.setClosable(false);
         AllTabs.getTabs().add(addTab);
-    }
+    }*/
 
     public void deleteChild(ActionEvent actionEvent) {
     }
@@ -102,5 +102,11 @@ public class problemSceneController implements Initializable {
 
     public Client getClient() {
         return client;
+    }
+
+    public void disLikeButtonClicked(ActionEvent actionEvent) {
+    }
+
+    public void likeButtonClicked(ActionEvent actionEvent) {
     }
 }
