@@ -12,35 +12,30 @@ import java.nio.channels.SocketChannel;
 
 public class Client {
     private DisscusionEngine DE;
+    InetSocketAddress hostAddress;
+    private Data sendData = new Data();
+    private Data recvData = new Data();
 
-    public Client(DisscusionEngine _DE){
+    public Client(DisscusionEngine _DE, String hostname, int port){
         DE = _DE;
+        hostAddress = new InetSocketAddress(hostname, port);
+        Thread clientSendThread = new Thread(new ClientSendThread(sendData, hostAddress));
+        Thread clientRecvThread = new Thread(new ClientReceiveThread(recvData, hostAddress));
     }
 
-    public void startClient(/*lisener*/) throws IOException, InterruptedException {
-
-        InetSocketAddress hostAddress = new InetSocketAddress("localhost", 8090);
-        try (SocketChannel client = SocketChannel.open(hostAddress)) {
-            String threadName = Thread.currentThread().getName();
-
-
-            //for (String message1 : messages) {
-            //   byte[] message = message1.getBytes();
-            //   ByteBuffer buffer = ByteBuffer.wrap(message);
-            //  //sendBuff(client, buffer);
-            //   client.write(buffer);
-            //Thread.sleep(10);
-            //  System.out.println(threadName + " sending: " + message1);
-            //  buffer.clear();
+    public void send(String msg) {
+        sendData.send(msg);
+        synchronized (sendData) {
+            sendData.notifyAll();
         }
     }
 
-
     public void HandleClientEvent(String protCmd) {
+        String strArr[];
         if (protCmd.length() >= 3) {
             switch (protCmd.substring(0, 3)) {
                 case "AID":
-                    String strArr[] = protCmd.substring(4).split(" ");
+                    strArr = protCmd.substring(4).split(" ");
                     handleAddIdea(strArr[1], Integer.parseInt(strArr[0]));
                     break;
                 case "LKE":
@@ -50,8 +45,8 @@ public class Client {
                     handleDislike(Integer.valueOf(protCmd.substring(4)));
                     break;
                 case "ACO":
-                    String strArr1[] = protCmd.substring(4).split(" ");
-                    handleMessage(strArr1[1], Integer.parseInt(strArr1[0]));
+                    strArr = protCmd.substring(4).split(" ");
+                    handleMessage(strArr[1], Integer.parseInt(strArr[0]));
                     break;
                 case "ACM":
                     handleMessage(protCmd.substring(4), -1);
