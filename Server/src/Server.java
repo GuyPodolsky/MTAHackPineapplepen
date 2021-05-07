@@ -12,6 +12,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class Server {
@@ -19,7 +20,6 @@ public class Server {
     private Selector selector;
     private final Map<SocketChannel, List<byte[]>> dataMapper;
     private final InetSocketAddress listenAddress;
-    private SocketChannel channel;
     private boolean alive = true;
 
     public Server(String address, int port) throws IOException {
@@ -80,7 +80,7 @@ public class Server {
 
     //read from the socket channel
     private void read(SelectionKey key) throws IOException {
-        channel = (SocketChannel) key.channel();
+        SocketChannel channel = (SocketChannel) key.channel();
         ByteBuffer buffer = ByteBuffer.allocate(1024);
         int numRead = -1;
         numRead = channel.read(buffer);
@@ -97,7 +97,14 @@ public class Server {
         else {
             byte[] data = new byte[numRead];
             System.arraycopy(buffer.array(), 0, data, 0, numRead);
-            System.out.println("Server got: " + new String(data));
+            String msgToSend = analyseMessage(new String(data));
+            write(msgToSend);
+        }
+    }
+
+    private void write(String msg) throws IOException {
+        for(SocketChannel sc : this.dataMapper.keySet()) {
+            sc.write(ByteBuffer.wrap(msg.getBytes(StandardCharsets.UTF_8)));
         }
     }
 
