@@ -119,9 +119,9 @@ public class app extends Application {
                     hostIP = startMeetingController.getSaveID();
                     user.setHost(true);
                     hostServer = new Server(hostIP,12212);
-                    hostServer.startServer();
+                    //hostServer.startServer();
                     de = new DisscusionEngine();
-                    client = new Client(de,hostIP,12212);
+                    client = new Client(de,hostIP,1313);
                     initThirdWindow();
                 } catch (IOException e) {
                     e.printStackTrace();
