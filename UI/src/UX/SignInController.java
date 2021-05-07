@@ -1,5 +1,6 @@
 package UX;
 
+import client.Client;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
@@ -34,6 +35,7 @@ public class SignInController implements Initializable {
     private String saveGuestName;
     private File savePhotoFilePath;
     private User user;
+    private Client client;
 
 
     @Override

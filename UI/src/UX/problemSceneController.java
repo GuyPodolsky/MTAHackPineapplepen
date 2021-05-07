@@ -18,6 +18,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class problemSceneController implements Initializable {
+
     @FXML
     Button sendButton;
 
@@ -43,6 +44,8 @@ public class problemSceneController implements Initializable {
     TabPane AllTabs;
     Tab currentTab;
     private User user;
+    private int solutionID;
+    Object object;
 
 
     private boolean isAdmin; // For Delete
@@ -91,7 +94,5 @@ public class problemSceneController implements Initializable {
     public void deleteChild(ActionEvent actionEvent) {
     }
 
-    public void addDiscussion(MouseEvent mouseEvent) {
 
-    }
 }

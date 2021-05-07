@@ -1,9 +1,8 @@
+package client;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.net.SocketAddress;
 import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 
 public class ClientReceiveThread implements Runnable {
@@ -27,7 +26,7 @@ public class ClientReceiveThread implements Runnable {
 
                 while (true) {
                     client.read(buffer);
-                    System.out.println("Client read" + buffer.toString());
+                    System.out.println("client.Client read" + buffer.toString());
                     buffer.clear();
                 }
             } catch (IOException e) {

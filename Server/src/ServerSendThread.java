@@ -7,13 +7,13 @@
 //
 //public class SendThread implements Runnable {
 //
-//    final Data data;
+//    final client.Data data;
 //    SelectionKey selectionKey;
 //    SocketChannel channel;
 //    ByteBuffer buffer;
 //
 //
-//    SendThread(Data data, SelectionKey key) {
+//    SendThread(client.Data data, SelectionKey key) {
 //        this.data = data;
 //        selectionKey = key;
 //    }
@@ -22,7 +22,7 @@
 //    public void run() {
 //        InetSocketAddress hostAddress = new InetSocketAddress("localhost", 8090);
 //        try (SocketChannel client = SocketChannel.open(hostAddress)) {
-//            System.out.println("Client... started");
+//            System.out.println("client.Client... started");
 //            String threadName = Thread.currentThread().getName();
 //
 //            // Send messages to server
