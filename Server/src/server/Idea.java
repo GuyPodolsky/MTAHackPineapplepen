@@ -21,6 +21,22 @@ public class Idea {
         dislikes = 0;
     }
 
+    public Idea(String text,User _owner,int _id) {
+        ideaText = text;
+        owner=_owner;
+        ID = _id;
+        likes = 0;
+        dislikes = 0;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public static int getIDGen(){
+        return idGen;
+    }
+
     public int getID() {
         return ID;
     }
