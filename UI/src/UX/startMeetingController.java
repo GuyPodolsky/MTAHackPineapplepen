@@ -1,6 +1,5 @@
 package UX;
 
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
@@ -104,6 +103,7 @@ public class startMeetingController implements Initializable {
 
     public void reallyStartNewMeetingButtonClicked(ActionEvent actionEvent) {
         // move to the next scene
+        copyToClipboard(saveID);
         setHostbuttonClicked(true);
     }
 
