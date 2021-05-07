@@ -1,24 +1,34 @@
-import java.util.Scanner;
+
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.SocketChannel;
+
 
 public class Client {
 
-    Scanner input = new Scanner(System.in);
+    public void startClient() throws IOException, InterruptedException {
 
+        InetSocketAddress hostAddress = new InetSocketAddress("localhost", 8090);
+        try (SocketChannel client = SocketChannel.open(hostAddress)) {
+            //System.out.println("Client... started");
+            String threadName = Thread.currentThread().getName();
 
-    public void startClient() {
+            // Send messages to server
+            String[] messages = new String[]{threadName + ": Hi guy"};//, threadName + ": Hi tom", threadName + ": bye"};
 
-        final Data data = new Data();
-        Thread sender = new Thread(new ClientSendThread(data));
-        Thread receiver = new Thread(new ClientReceiveThread(data));
-        sender.start();
-        receiver.start();
-
-        while(true) {
-            String in = input.nextLine();
-            data.send(in);
-            synchronized (data) {
-                data.notifyAll();
+            for (String message1 : messages) {
+                byte[] message = message1.getBytes();
+                ByteBuffer buffer = ByteBuffer.wrap(message);
+                //sendBuff(client, buffer);
+                client.write(buffer);
+                //Thread.sleep(10);
+                System.out.println(threadName + " sending: " + message1);
+                buffer.clear();
             }
         }
+    }
+    private synchronized void sendBuff(SocketChannel client, ByteBuffer buffer) throws IOException {
+        client.write(buffer);
     }
 }

@@ -1,35 +1,30 @@
+//package examples.nio;
+
+import server.DisscusionEngine;
+import server.Idea;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.*;
 
+//example taken from: http://examples.javacodegeeks.com/core-java/nio/java-nio-socket-example/
 public class Server {
+
     private Selector selector;
+    private final Map<SocketChannel, List<byte[]>> dataMapper;
     private final InetSocketAddress listenAddress;
-    private final Data data;
+    private SocketChannel channel;
 
     public Server(String address, int port) throws IOException {
         listenAddress = new InetSocketAddress(address, port);
-        data = new Data();
-
-    }//accept a connection made to this channel's socket
-
-    private void accept (SelectionKey key) throws IOException {
-        ServerSocketChannel serverChannel = (ServerSocketChannel) key.channel();
-        SocketChannel channel = serverChannel.accept();
-        channel.configureBlocking(false);
-        Socket socket = channel.socket();
-        SocketAddress remoteAddr = socket.getRemoteSocketAddress();
-        System.out.println("Connected to: " + remoteAddr);
-        channel.register(this.selector, SelectionKey.OP_READ);
-        Object obj = new Object();
-        Thread receiver = new Thread(new ReceiveThread(data, key), "receiver");
-        Thread sender = new Thread(new SendThread(data, key), "sender");
+        dataMapper = new HashMap<>();
     }
 
     // create server channel
@@ -62,7 +57,59 @@ public class Server {
                 }
 
                 if (key.isAcceptable()) {
-                    accept(key);
+                    this.accept(key);
+                } else if (key.isReadable()) {
+                    this.read(key);
+                }
+            }
+        }
+    }
+
+    //accept a connection made to this channel's socket
+    private void accept(SelectionKey key) throws IOException {
+        ServerSocketChannel serverChannel = (ServerSocketChannel) key.channel();
+        SocketChannel channel = serverChannel.accept();
+        channel.configureBlocking(false);
+        Socket socket = channel.socket();
+        SocketAddress remoteAddr = socket.getRemoteSocketAddress();
+        //System.out.println("Connected to: " + remoteAddr);
+        // register channel with selector for further IO
+        dataMapper.put(channel, new ArrayList<byte[]>());
+        channel.register(this.selector, SelectionKey.OP_READ);
+    }
+
+    //read from the socket channel
+    private void read(SelectionKey key) throws IOException {
+        channel = (SocketChannel) key.channel();
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
+        int numRead = -1;
+        numRead = channel.read(buffer);
+        //System.out.println("Server read: " + numRead);
+        if (numRead == -1) {
+            this.dataMapper.remove(channel);
+            Socket socket = channel.socket();
+            SocketAddress remoteAddr = socket.getRemoteSocketAddress();
+            //System.out.println("Connection closed by client: " + remoteAddr);
+            channel.close();
+            key.cancel();
+            return;
+        }
+        else {
+            byte[] data = new byte[numRead];
+            System.arraycopy(buffer.array(), 0, data, 0, numRead);
+            System.out.println("Server got: " + new String(data));
+        }
+    }
+
+    private String analyseMessage(String msg) {
+        if(msg.length() >= 3) {
+            switch(msg.substring(0,3)) {
+                case "AID":
+                    int ideaID = Idea.getIDGen();
+                    return "AID " + String.valueOf(ideaID) + " " + msg.substring(3);
+                    break;
+                case "EXT": {
+                    for ()
                 }
             }
         }
