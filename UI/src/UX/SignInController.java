@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
@@ -31,8 +32,9 @@ public class SignInController implements Initializable {
     private BooleanProperty photoChooserClicked = new SimpleBooleanProperty(this, "User connected");
     private BooleanProperty signUpClicked = new SimpleBooleanProperty(this, "User connected");
     private String saveGuestName;
-    private String savePhotoFilePath;
+    private File savePhotoFilePath;
     private User user;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -105,7 +107,7 @@ public class SignInController implements Initializable {
         File selectedFile = fileChooser.showOpenDialog(new Stage());
         if (selectedFile != null) {
             ///
-            setSavePhotoFilePath(selectedFile.toURL().toString());
+            setSavePhotoFilePath(selectedFile);
         }
 
         setPhotoChooserClicked(true);
@@ -143,7 +145,7 @@ public class SignInController implements Initializable {
         this.signUpClicked.set(signUpClicked);
     }
 
-    public void setSavePhotoFilePath(String savePhotoFilePath) {
+    public void setSavePhotoFilePath(File savePhotoFilePath) {
         this.savePhotoFilePath = savePhotoFilePath;
     }
 }

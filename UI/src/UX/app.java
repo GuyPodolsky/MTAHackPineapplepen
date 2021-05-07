@@ -85,7 +85,8 @@ public class app extends Application {
         Parent load = fl.load(url.openStream());
         startMeetingController = fl.getController();
         startMeetingScene = new Scene(load, 600, 600);
-         startMeetingController.setUserNameLabel(signInController.getSaveGuestName()); //TODO:
+        startMeetingController.setUserNameLabel(signInController.getSaveGuestName()); //TODO:
+        startMeetingController.setUserImageView(user.getPic());
         this.primaryStage.setScene(startMeetingScene);
         startMeetingController.buttonClickedProperty().addListener((source)->{
             if(startMeetingController.isButtonClicked()){

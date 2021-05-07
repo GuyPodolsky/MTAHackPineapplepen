@@ -1,15 +1,17 @@
 package dto;
 
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+
 
 import java.awt.image.BufferedImage;
 
 public class UserDTO {
     private final String name;
-    private final BufferedImage pic;
+    private final Image pic;
     private final int id;
 
-    public UserDTO(String name, BufferedImage pic, int id) {
+    public UserDTO(String name, Image pic, int id) {
         this.name = name;
         this.pic = pic;
         this.id = id;
@@ -19,7 +21,7 @@ public class UserDTO {
         return name;
     }
 
-    public BufferedImage getPic() {
+    public Image getPic() {
         return pic;
     }
 

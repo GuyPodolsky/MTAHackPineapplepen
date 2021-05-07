@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -44,6 +46,11 @@
                </font>
             </Text>
             <Button fx:id="reallyStartNewMeetingButton" mnemonicParsing="false" onAction="#reallyStartNewMeetingButtonClicked" text="Start Meeting" textAlignment="CENTER" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+            <ImageView fx:id="userImageView" fitHeight="82.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@../../../Server/src/resource/default_pic.jpg" />
+               </image>
+            </ImageView>
          </children>
       </GridPane>
    </center>

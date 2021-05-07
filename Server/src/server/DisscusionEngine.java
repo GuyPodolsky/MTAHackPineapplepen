@@ -88,7 +88,7 @@ public class DisscusionEngine {
         while(root.getParent() != null) {
             root = root.getParent();
         }
-        String str = "out.txt"
+        String str = "out.txt";
         try (ObjectOutputStream out =
                      new ObjectOutputStream(
                              new FileOutputStream(str))) {
@@ -111,12 +111,12 @@ public class DisscusionEngine {
     public void helperPrintFlow(IdeaNode root) {
         String str = "1. ";
         for (Integer currId : root.getFollowingIdeas().keySet()) {
-            if(root.getIdea(currId).isMarked()) { //mark somehow- javafx or admin like, or my func add to flow
-                //add to the bin file with number and go to its child
-
-                helperPrintFlow(root.getIdea(currId));
-            }
-            // else- do nothing to to the next brother.
+//            if(root.getIdea(currId).isMarked()) { //mark somehow- javafx or admin like, or my func add to flow
+//                //add to the bin file with number and go to its child
+//
+//                helperPrintFlow(root.getIdea(currId));
+//            }
+//            // else- do nothing to to the next brother.
         }
     }
 

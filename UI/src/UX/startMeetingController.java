@@ -7,6 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import java.util.Random;
 
@@ -24,6 +26,7 @@ public class startMeetingController implements Initializable {
     public TextField meetingID;
     public Text getNewMeetingID;
     public Button reallyStartNewMeetingButton;
+    public ImageView userImageView;
     private BooleanProperty buttonClicked = new SimpleBooleanProperty(this, "Button clicked");
 
     @Override
@@ -83,5 +86,9 @@ public class startMeetingController implements Initializable {
     public void reallyStartNewMeetingButtonClicked(ActionEvent actionEvent) {
         // move to the next scene
         setButtonClicked(true);
+    }
+
+    public void setUserImageView(Image photo){
+        userImageView.setImage(photo);
     }
 }
