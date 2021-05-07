@@ -46,11 +46,36 @@
                </font>
             </Text>
             <Button fx:id="reallyStartNewMeetingButton" mnemonicParsing="false" onAction="#reallyStartNewMeetingButtonClicked" text="Start Meeting" textAlignment="CENTER" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-           <!-- <ImageView fx:id="userImageView" fitHeight="82.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <ImageView fx:id="userImageView" fitHeight="106.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <image>
-                  <Image url="@../../../Server/src/resource/default_pic.jpg" />
+                  <Image url="@pineApplePen.jpg" />
                </image>
-            </ImageView>-->
+            </ImageView>
+            <ImageView fx:id="userImageView1" fitHeight="106.0" fitWidth="117.0" layoutX="252.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@pineApplePen.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="userImageView11" fitHeight="106.0" fitWidth="117.0" layoutX="10.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@pineApplePen.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="userImageView12" fitHeight="106.0" fitWidth="117.0" layoutX="10.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@pineApplePen.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="userImageView121" fitHeight="106.0" fitWidth="117.0" layoutX="130.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@pineApplePen.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="userImageView1211" fitHeight="106.0" fitWidth="117.0" layoutX="370.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <image>
+                  <Image url="@pineApplePen.jpg" />
+               </image>
+            </ImageView>
          </children>
       </GridPane>
    </center>
