@@ -22,6 +22,7 @@ public class app extends Application {
     private Scene signInScene;
     private Scene startMeetingScene;
     private Scene disccushScene;
+    private problemSceneController disccushController;
     private SignInController signInController;
     private startMeetingController startMeetingController;
     //private I user; //TODO:
@@ -86,14 +87,30 @@ public class app extends Application {
         startMeetingController = fl.getController();
         startMeetingScene = new Scene(load, 600, 600);
         startMeetingController.setUserNameLabel(signInController.getSaveGuestName()); //TODO:
-        startMeetingController.setUserImageView(user.getPic());
+        //startMeetingController.setUserImageView(user.getPic());
         this.primaryStage.setScene(startMeetingScene);
         startMeetingController.buttonClickedProperty().addListener((source)->{
             if(startMeetingController.isButtonClicked()){
-
+                try {
+                    initThirdWindow();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
+    }
+
+    private void initThirdWindow() throws IOException{
+        this.primaryStage.setTitle("Disccush!");
+        FXMLLoader fl = new FXMLLoader();
+        URL url = getClass().getResource("problemScene.fxml");
+        fl.setLocation(url);
+        fl.setBuilderFactory(new JavaFXBuilderFactory());
+        Parent load = fl.load(url.openStream());
+        disccushController = fl.getController();
+        disccushScene = new Scene(load, 600, 600);
+        this.primaryStage.setScene(disccushScene);
     }
 
 

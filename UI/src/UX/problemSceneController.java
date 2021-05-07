@@ -1,3 +1,5 @@
+package UX;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,6 +40,7 @@ public class problemSceneController implements Initializable {
 
     @FXML
     TabPane AllTabs;
+    Tab currentTab;
 
 
     private boolean isAdmin; // For Delete
@@ -47,6 +50,12 @@ public class problemSceneController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         AllTabs = new TabPane();
+
+    }
+
+    public void openNewTab() {
+        currentTab = new Tab();
+        AllTabs.getTabs().add(currentTab);
 
     }
 
@@ -84,6 +93,6 @@ public class problemSceneController implements Initializable {
     }
 
     public void addDiscussion(MouseEvent mouseEvent) {
-
+        openNewTab();
     }
 }

@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="problemSceneController">
+<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.problemSceneController">
   <children>
     <TextArea fx:id="solutionTextArea" editable="false" focusTraversable="false" layoutX="4.0" layoutY="4.0" onMouseClicked="#addDiscussion" prefHeight="210.0" prefWidth="480.0" wrapText="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="4.0">
          <contextMenu>
