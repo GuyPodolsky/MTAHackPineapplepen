@@ -30,10 +30,10 @@ public class app extends Application {
     private problemSceneController disccushController;
     private SignInController signInController;
     private startMeetingController startMeetingController;
-    //private I user; //TODO:
     User user;
     private DisscusionEngine de;
     private Client client;
+    String hostIP;
 
 
 
@@ -100,6 +100,7 @@ public class app extends Application {
         startMeetingController.setUserNameLabel(user.getName());
         startMeetingController.setUserImageView(user.getPic());
         this.primaryStage.setScene(startMeetingScene);
+        hostIP = startMeetingController.getSaveID();
         startMeetingController.buttonClickedProperty().addListener((source)->{
             if(startMeetingController.isButtonClicked()){
                 try {
@@ -115,8 +116,7 @@ public class app extends Application {
                 try {
                     user.setHost(true);
                     de = new DisscusionEngine();
-                    client = new Client(de,startMeetingController.getSaveID(),12212);
-
+                    client = new Client(de,hostIP,12212);
                     initThirdWindow();
                 } catch (IOException e) {
                     e.printStackTrace();

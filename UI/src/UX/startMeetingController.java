@@ -90,6 +90,7 @@ public class startMeetingController implements Initializable {
 
     public void joinButtonClicked(ActionEvent actionEvent) {
         // save the meeting ID and connect
+        saveID = meetingID.getText();
         setButtonClicked(true);
     }
 
