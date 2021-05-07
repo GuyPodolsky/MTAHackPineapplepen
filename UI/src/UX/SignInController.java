@@ -148,4 +148,15 @@ public class SignInController implements Initializable {
     public void setSavePhotoFilePath(File savePhotoFilePath) {
         this.savePhotoFilePath = savePhotoFilePath;
     }
+
+    public int getFromMeetIDPort(String meetID)
+    {
+        String strArr[]  = meetID.split(":");
+        return Integer.parseInt(strArr[1]);
+    }
+
+    public String getFromMeetIDIP(String meetID){
+        String strArr[] = meetID.split(":");
+        return strArr[0];
+    }
 }
