@@ -78,7 +78,7 @@ public class SignInController implements Initializable {
 
     public void userButtonClicked(ActionEvent actionEvent) throws IOException {
         try {
-            InputStream stream = getClass().getResource("Server\\src\\resource\\saver.bin").openStream();
+            InputStream stream = getClass().getResource("server.Server\\src\\resource\\saver.bin").openStream();
             user = new User(null);
         }catch (Exception e){
             // TODO: the first time entering to the system

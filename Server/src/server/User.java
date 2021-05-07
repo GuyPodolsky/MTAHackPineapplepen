@@ -17,7 +17,7 @@ public class User implements Serializable {
     private int id;
     private static int idGenerator = 1; //starts from one and grow each user
     private boolean isHost;         // only when pressed new meeting
-    private final String saverFile = "Server/src/resource/saver.bin";
+    private final String saverFile = "server.Server/src/resource/saver.bin";
     public File pictureFile;
 
     public String getName() {
@@ -126,7 +126,7 @@ public class User implements Serializable {
         }
       /*try {
          // link = pic.toString();
-          //ImageIO.write((RenderedImage) pic, "jpg", new File("Server/src/resource/me.jpg"));
+          //ImageIO.write((RenderedImage) pic, "jpg", new File("server.Server/src/resource/me.jpg"));
       }
       catch (IOException ex) {
           //do somethong

@@ -1,4 +1,4 @@
-//package examples.nio;
+package server;//package examples.nio;
 
 import server.DisscusionEngine;
 import server.Idea;
@@ -37,7 +37,7 @@ public class Server {
         serverChannel.socket().bind(listenAddress);
         serverChannel.register(this.selector, SelectionKey.OP_ACCEPT);
 
-        System.out.println("Server started...");
+        System.out.println("server.Server started...");
 
         while (alive) {
             // wait for events
@@ -84,7 +84,7 @@ public class Server {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
         int numRead = -1;
         numRead = channel.read(buffer);
-        //System.out.println("Server read: " + numRead);
+        //System.out.println("server.Server read: " + numRead);
         if (numRead == -1) {
             this.dataMapper.remove(channel);
             Socket socket = channel.socket();

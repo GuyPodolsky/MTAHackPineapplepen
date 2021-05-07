@@ -31,7 +31,7 @@ public class ServerReceiveThread implements Runnable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            System.out.println("Server read: " + numRead);
+            System.out.println("server.Server read: " + numRead);
             if (numRead == -1) {
                 Socket socket = channel.socket();
                 SocketAddress remoteAddr = socket.getRemoteSocketAddress();
@@ -51,7 +51,7 @@ public class ServerReceiveThread implements Runnable {
             synchronized (data) {
                 data.notifyAll();
             }
-            //System.out.println("Server got: " + new String(in));
+            //System.out.println("server.Server got: " + new String(in));
         }
     }
 }

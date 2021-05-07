@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import server.DisscusionEngine;
+import server.Server;
 import server.User;
 import client.*;
 
@@ -34,9 +35,7 @@ public class app extends Application {
     private DisscusionEngine de;
     private Client client;
     String hostIP;
-
-
-
+    private Server hostServer;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -96,7 +95,7 @@ public class app extends Application {
         startMeetingController = fl.getController();
         startMeetingScene = new Scene(load, 600, 600);
         if(user== null)
-            user = new User(signInController.getSaveGuestName(),new File("Server/src/resource/default_pic.jpg"));
+            user = new User(signInController.getSaveGuestName(),new File("server.Server/src/resource/default_pic.jpg"));
         startMeetingController.setUserNameLabel(user.getName());
         startMeetingController.setUserImageView(user.getPic());
         this.primaryStage.setScene(startMeetingScene);
@@ -119,6 +118,8 @@ public class app extends Application {
                 try {
                     hostIP = startMeetingController.getSaveID();
                     user.setHost(true);
+                    hostServer = new Server(hostIP,12212);
+                    hostServer.startServer();
                     de = new DisscusionEngine();
                     client = new Client(de,hostIP,12212);
                     initThirdWindow();
