@@ -10,6 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Random;
 
 import java.net.URL;
@@ -29,7 +32,13 @@ public class startMeetingController implements Initializable {
     public ImageView userImageView;
     private BooleanProperty buttonClicked = new SimpleBooleanProperty(this, "Button clicked");
     private BooleanProperty HostbuttonClicked = new SimpleBooleanProperty(this, "Button clicked");
+    private String saveID;
 
+
+
+    public String getSaveID() {
+        return saveID;
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -38,7 +47,7 @@ public class startMeetingController implements Initializable {
     public void startNewMeetingClicked(ActionEvent actionEvent) {
         if(getNewMeetingID.getText().equals("Meeting ID : ")) {
             // set an meeting id
-            int saveID = new Random().nextInt(10000);       // TODO: I'll need to get a real meeting ID
+            saveID = getSysIp();
             getNewMeetingID.setText(getNewMeetingID.getText() + saveID);
             getNewMeetingID.setVisible(true); // show it to the user
             reallyStartNewMeetingButton.setVisible(true);
@@ -103,5 +112,22 @@ public class startMeetingController implements Initializable {
 
     public void setHostbuttonClicked(boolean hostbuttonClicked) {
         this.HostbuttonClicked.set(hostbuttonClicked);
+    }
+
+    public static String getSysIp() {
+        String systemipaddress = "";
+        try {
+            URL url_name = new URL("http://bot.whatismyipaddress.com");
+
+            BufferedReader sc =
+                    new BufferedReader(new InputStreamReader(url_name.openStream()));
+
+            // reads system IPAddress
+            systemipaddress = sc.readLine().trim();
+        } catch (Exception e) {
+            systemipaddress = "Cannot Execute Properly";
+        }
+
+        return systemipaddress;
     }
 }

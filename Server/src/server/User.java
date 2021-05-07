@@ -1,6 +1,5 @@
 package server;
 
-import dto.UserDTO;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -159,8 +158,5 @@ public class User implements Serializable {
                 '}';
     }
 
-    public UserDTO toDto() {
-        return new UserDTO(this.name, this.pictureFile, this.id);
-    }
 }
 
