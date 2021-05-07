@@ -148,4 +148,6 @@ public class SignInController implements Initializable {
     public void setSavePhotoFilePath(File savePhotoFilePath) {
         this.savePhotoFilePath = savePhotoFilePath;
     }
+
+    public User getUser(){return user;}
 }

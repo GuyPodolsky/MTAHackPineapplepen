@@ -69,6 +69,8 @@ public class app extends Application {
         signInController.signUpClickedProperty().addListener((source)->{
             if(signInController.isSignUpClicked()){
                 try {
+                    if(signInController.getSaveGuestName()==null)
+                        user = signInController.getUser();
                     initStartMeetingScene();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -86,12 +88,15 @@ public class app extends Application {
         Parent load = fl.load(url.openStream());
         startMeetingController = fl.getController();
         startMeetingScene = new Scene(load, 600, 600);
-        startMeetingController.setUserNameLabel(signInController.getSaveGuestName()); //TODO:
-        //startMeetingController.setUserImageView(user.getPic());
+        if(user== null)
+            user = new User(signInController.getSaveGuestName(),new File("Server/src/resource/default_pic.jpg"));
+        startMeetingController.setUserNameLabel(user.getName());
+        startMeetingController.setUserImageView(user.getPic());
         this.primaryStage.setScene(startMeetingScene);
         startMeetingController.buttonClickedProperty().addListener((source)->{
             if(startMeetingController.isButtonClicked()){
                 try {
+                    user.setHost(true);
                     initThirdWindow();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -109,6 +114,7 @@ public class app extends Application {
         fl.setBuilderFactory(new JavaFXBuilderFactory());
         Parent load = fl.load(url.openStream());
         disccushController = fl.getController();
+        disccushController.setUser(user);
         disccushScene = new Scene(load, 600, 600);
         this.primaryStage.setScene(disccushScene);
     }

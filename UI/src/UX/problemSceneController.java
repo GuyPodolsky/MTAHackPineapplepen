@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import server.User;
 
 
 import java.io.IOException;
@@ -41,6 +42,7 @@ public class problemSceneController implements Initializable {
     @FXML
     TabPane AllTabs;
     Tab currentTab;
+    private User user;
 
 
     private boolean isAdmin; // For Delete
@@ -53,16 +55,13 @@ public class problemSceneController implements Initializable {
 
     }
 
-    public void openNewTab() {
-        currentTab = new Tab();
-        AllTabs.getTabs().add(currentTab);
 
+    public void setUser(User user){
+        this.user = user;
     }
 
-
-
     public void sendChatMessage(ActionEvent actionEvent) {
-        serverChatTextArea.appendText(userCharTextField.getText() + "\n");
+        serverChatTextArea.appendText(user.getName()+ " : " + userCharTextField.getText() + "\n");
         userCharTextField.clear();
     }
 
@@ -93,6 +92,6 @@ public class problemSceneController implements Initializable {
     }
 
     public void addDiscussion(MouseEvent mouseEvent) {
-        openNewTab();
+
     }
 }

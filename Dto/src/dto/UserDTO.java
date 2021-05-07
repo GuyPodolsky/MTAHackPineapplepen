@@ -5,13 +5,14 @@ import javafx.scene.image.Image;
 
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class UserDTO {
     private final String name;
-    private final Image pic;
+    private File pic;
     private final int id;
 
-    public UserDTO(String name, Image pic, int id) {
+    public UserDTO(String name, File pic, int id) {
         this.name = name;
         this.pic = pic;
         this.id = id;
@@ -21,7 +22,7 @@ public class UserDTO {
         return name;
     }
 
-    public Image getPic() {
+    public File getPic() {
         return pic;
     }
 
