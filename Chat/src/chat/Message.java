@@ -1,5 +1,4 @@
 package chat;
-import dto.MessageDTO;
 import server.User;
 
 import java.time.LocalDateTime;
@@ -15,21 +14,21 @@ public class Message {
     private final User sender;
     private String message;
 
-    Message(User _sender, String _message) {
+    public Message(User _sender, String _message) {
         this.id = idGen++;
         this.dateTimeStamp = LocalDateTime.now();
         this.sender = _sender;
         this.message = _message;
     }
 
-    Message(User _sender, String _message, int _id) {
+    public Message(User _sender, String _message, int _id) {
         this.id = _id;
         this.dateTimeStamp = LocalDateTime.now();
         this.sender = _sender;
         this.message = _message;
     }
 
-    Message(String _message) {
+    public Message(String _message) {
         this.id = idGen++;
         this.dateTimeStamp = LocalDateTime.now();
         this.sender = null;
@@ -60,8 +59,5 @@ public class Message {
         this.message = message;
     }
 
-    public MessageDTO toDto() {
-        return new MessageDTO(this.sender.toDto(), this.message);
-    }
 
 }
