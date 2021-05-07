@@ -4,6 +4,8 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Objects;
 
@@ -47,15 +49,13 @@ public class User implements Serializable {
         idGenerator++;
         this.name = name;
         this.isHost = false;
-        try { // grab a smurf from the path if it is there otherwise just use a green square.
-            Image picture = (new Image(String.valueOf(photo.toURL()))); //"http://bluebuddies.com/gallery/title/jpg/Smurf_Fun_100x100.jpg"
-        } catch (Exception e) {
-            pic = new ImageView(new Image("resource/default_pic.jpg"));
-        }
-        pic.setTranslateZ(150);
-        pic.setOpacity(0.7);
-        pic.setMouseTransparent(true);
 
+        BufferedImage bImage = null;
+        try {
+            bImage = ImageIO.read(photo);
+        } catch (IOException e) {
+        System.out.println("Exception occured :" + e.getMessage());
+    }
         saver(); // save to file
     }
 
