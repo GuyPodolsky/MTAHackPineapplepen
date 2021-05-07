@@ -5,7 +5,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 
-public class ReceiveThread implements Runnable {
+class ReceiveThread implements Runnable {
 
     final Data data;
     SelectionKey selectionKey;
