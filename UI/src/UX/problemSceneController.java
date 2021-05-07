@@ -70,19 +70,19 @@ public class problemSceneController implements Initializable {
     }
 
     public void addSolutionText(ActionEvent actionEvent) throws IOException {
-        if (userSolution.getText().length() != 0) {
-            FXMLLoader bubble = new FXMLLoader();
-            URL url = getClass().getResource("bubbleSolution.fxml");
-            bubble.setLocation(url);
-            solutionBubble = new AnchorPane();
-            solutionBubble = bubble.load(url.openStream());
-            TextArea text = (TextArea) solutionBubble.getChildren().get(0);
-            text.setText(userSolution.getText());
-            solutionBubble.setPrefSize(userSolution.getText().length(),5*userSolution.getFont().getSize());
-            solutionBox.getChildren().add(solutionBubble);
-            /// ADD SORT FOR LIKES
-            /// ADD LIKES INCREMENT
-        }
+            if (userSolution.getText().length() != 0) {
+                FXMLLoader bubble = new FXMLLoader();
+                URL url = getClass().getResource("bubbleSolution.fxml");
+                bubble.setLocation(url);
+                solutionBubble = new AnchorPane();
+                solutionBubble = bubble.load(url.openStream());
+                TextArea text = (TextArea) solutionBubble.getChildren().get(0);
+                text.setText(userSolution.getText());
+                solutionBubble.setPrefSize(userSolution.getText().length(), 5 * userSolution.getFont().getSize());
+                solutionBox.getChildren().add(solutionBubble);
+                /// ADD SORT FOR LIKES
+                /// ADD LIKES INCREMENT
+            }
 
     }
 

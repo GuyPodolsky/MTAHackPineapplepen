@@ -120,7 +120,7 @@ public class app extends Application {
                     hostIP = startMeetingController.getSaveID();
                     user.setHost(true);
 
-                    //client = new Client(de,hostIP,924);
+                    client = new Client(de,hostIP,924);
                     initThirdWindow();
                 } catch (IOException e) {
                     e.printStackTrace();
