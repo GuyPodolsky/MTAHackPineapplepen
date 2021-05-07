@@ -28,7 +28,6 @@ public class ClientReceiveThread implements Runnable {
     @Override
     public void run() {
         while(true) {
-            InetSocketAddress hostAddress = new InetSocketAddress("localhost", 8090);
             try (SocketChannel client = SocketChannel.open(hostAddress)) {
                 //String threadName = Thread.currentThread().getName();
 
