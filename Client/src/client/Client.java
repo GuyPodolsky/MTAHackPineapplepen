@@ -1,3 +1,4 @@
+package client;
 
 import chat.Message;
 import server.DisscusionEngine;

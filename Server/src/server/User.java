@@ -1,6 +1,14 @@
 package server;
+
+import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 import java.io.*;
+import java.net.URL;
 import java.util.Objects;
 
 public class User implements Serializable {
@@ -149,4 +157,6 @@ public class User implements Serializable {
                 ", pictureFile=" + pictureFile +
                 '}';
     }
+
 }
+
