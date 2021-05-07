@@ -14,13 +14,13 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.*;
 
-//example taken from: http://examples.javacodegeeks.com/core-java/nio/java-nio-socket-example/
 public class Server {
 
     private Selector selector;
     private final Map<SocketChannel, List<byte[]>> dataMapper;
     private final InetSocketAddress listenAddress;
     private SocketChannel channel;
+    private boolean alive = true;
 
     public Server(String address, int port) throws IOException {
         listenAddress = new InetSocketAddress(address, port);
@@ -39,7 +39,7 @@ public class Server {
 
         System.out.println("Server started...");
 
-        while (true) {
+        while (alive) {
             // wait for events
             this.selector.select();
 
@@ -101,17 +101,24 @@ public class Server {
         }
     }
 
-    private String analyseMessage(String msg) {
+    private String analyseMessage(String msg) throws IOException {
         if(msg.length() >= 3) {
             switch(msg.substring(0,3)) {
                 case "AID":
                     int ideaID = Idea.getIDGen();
                     return "AID " + String.valueOf(ideaID) + " " + msg.substring(3);
-                    break;
                 case "EXT": {
-                    for ()
+                    for (SocketChannel sc : this.dataMapper.keySet()) {
+                        sc.close();
+                        alive = false;
+                        return new String("");
+                    }
+                    break;
                 }
+                default:
+                    return msg;
             }
         }
+        return new String("");
     }
 }
