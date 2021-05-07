@@ -152,4 +152,15 @@ public class SignInController implements Initializable {
     }
 
     public User getUser(){return user;}
+
+    public int getFromMeetIDPort(String meetID)
+    {
+        String strArr[]  = meetID.split(":");
+        return Integer.parseInt(strArr[1]);
+    }
+
+    public String getFromMeetIDIP(String meetID){
+        String strArr[] = meetID.split(":");
+        return strArr[0];
+    }
 }
