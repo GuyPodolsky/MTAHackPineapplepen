@@ -29,6 +29,13 @@ public class Message {
         this.message = _message;
     }
 
+    Message(String _message) {
+        this.id = idGen++;
+        this.dateTimeStamp = LocalDateTime.now();
+        this.sender = null;
+        this.message = _message;
+    }
+
     public static int getIdGen() {
         return idGen;
     }

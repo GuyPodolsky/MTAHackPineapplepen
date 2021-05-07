@@ -22,6 +22,10 @@ public class DisscusionEngine {
         disChat = chat;
     }
 
+    public void setDisTree(IdeaNode disTree) {
+        this.disTree = disTree;
+    }
+
     public IdeaNode getDisTree() {
         return disTree;
     }
@@ -49,7 +53,9 @@ public class DisscusionEngine {
     public void sendMessage(Message message, int... refId) {
         this.disChat.addMessages(message);
         for(int id : refId) {
-            disTree.getIdea(id).addComments(message);
+            IdeaNode idea = disTree.getIdea(id);
+            if(idea!=null)
+                idea.addComments(message);
         }
     }
 
@@ -59,8 +65,6 @@ public class DisscusionEngine {
         //check if im a real node
         IdeaNode nextIdea = disTree.getIdea(id);
         if( nextIdea != null) {
-            // add to flow need to implement
-            addToFlow(nextIdea);
             //change distree to the next
             disTree = nextIdea;
         }
@@ -78,11 +82,6 @@ public class DisscusionEngine {
         }
     }
 
-    public void addToFlow(IdeaNode node) {
-        flowTree.addIdea(node);
-        flowTree=node;
-    }
-
     public void printFlow() { // called when program is finished
         IdeaNode root = getDisTree();
         while(root.getParent() != null) {
@@ -92,9 +91,14 @@ public class DisscusionEngine {
         try (ObjectOutputStream out =
                      new ObjectOutputStream(
                              new FileOutputStream(str))) {
-            helperPrintFlow(root); //out.writeObject(str);
-            out.flush();
-
+            int i=1;
+            String stri = "";
+            String temp = "1. ";
+            out.writeChars(temp + root.getIdeaText());
+            helperPrintFlow(root, out, i, stri); //out.writeObject(str);
+            if (out != null) {
+                out.close();
+            }
 
             //System.out.println("Successfully saved file!");
         } catch (FileNotFoundException ex) {
@@ -103,25 +107,35 @@ public class DisscusionEngine {
             System.out.println("ERROR! Something unexpected occurred:");
             System.out.println(e.getMessage());
         }
-        // open file here and send to the helperPrint than close here
-
-
     }
 
-    public void helperPrintFlow(IdeaNode root) {
-        String str = "1. ";
+    public void helperPrintFlow(IdeaNode root, ObjectOutputStream out, int index, String str) { // only admin pressed here
+        String dot = ".";
+        String space = " ";
+        str = index+dot;
+        index = 1;
+        String temp = str;
+
+
         for (Integer currId : root.getFollowingIdeas().keySet()) {
-//            if(root.getIdea(currId).isMarked()) { //mark somehow- javafx or admin like, or my func add to flow
-//                //add to the bin file with number and go to its child
-//
-//                helperPrintFlow(root.getIdea(currId));
-//            }
-//            // else- do nothing to to the next brother.
+            if(root.getIdea(currId).isLiked()) { //mark somehow- javafx or admin like, or my func add to flow
+                //add to the bin file with number and go to its child
+                try {
+                    out.writeChars(str + index + dot + space + root.getIdeaText());
+
+                }
+                catch (IOException ex) {
+                    //didnt write good..
+                }
+                //check if my child has kids
+                if (root.getIdea(currId).getFollowingIdeas() != null) {
+                    helperPrintFlow(root.getIdea(currId), out, index, temp);
+                }
+                //else my kid is a leaf
+                ++index;
+            }
+            // else- do nothing to to the next brother.
         }
     }
-
-
-
-
 
 }
