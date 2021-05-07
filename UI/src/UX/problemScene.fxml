@@ -4,16 +4,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.problemSceneController">
+<AnchorPane fx:id="problemScenePane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UX.problemSceneController">
    <children>
       <TextField fx:id="userCharTextField" layoutX="747.0" layoutY="500.0" onAction="#sendChatMessage" prefHeight="25.0" prefWidth="276.0" promptText="Send Message" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="45.0">
          <opaqueInsets>
@@ -22,83 +20,31 @@
       </TextField>
       <Button fx:id="sendButton" layoutX="1018.0" layoutY="500.0" mnemonicParsing="false" onAction="#sendChatMessage" text="Send" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="0.0" />
       <ToggleButton fx:id="problemScene" layoutX="14.0" layoutY="506.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Admin" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="714.0" layoutY="14.0" prefHeight="29.0" prefWidth="59.0" text="Chat" textAlignment="CENTER" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="14.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="839.0" layoutY="14.0" prefHeight="29.0" prefWidth="115.0" text="Group Chat" textAlignment="CENTER" AnchorPane.rightAnchor="107.0" AnchorPane.topAnchor="14.0">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
       <TextField fx:id="userSolution" layoutX="63.0" layoutY="504.0" onAction="#addSolutionText" prefHeight="25.0" prefWidth="622.0" promptText="Add Solution" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="376.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </TextField>
       <Button layoutX="686.0" layoutY="500.0" mnemonicParsing="false" onAction="#addSolutionText" prefHeight="25.0" prefWidth="50.0" text="Send" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="325.0" />
-      <TabPane fx:id="AllTabs" layoutX="4.0" layoutY="38.0" prefHeight="459.0" prefWidth="731.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="326.0" AnchorPane.topAnchor="38.0">
-         <tabs>
-            <Tab>
-               <content>
-                  <ScrollPane fitToHeight="true" fitToWidth="true">
-                     <content>
-                        <FlowPane fx:id="solutionBox" alignment="CENTER" columnHalignment="CENTER" hgap="2.0" vgap="2.0">
-                           <padding>
-                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                           </padding>
-                        </FlowPane>
-                     </content>
-                  </ScrollPane>
-               </content>
-            </Tab>
-            <Tab>
-               <content>
-                  <ScrollPane fitToHeight="true" fitToWidth="true">
-                     <content>
-                        <FlowPane fx:id="solutionBox1" alignment="CENTER" columnHalignment="CENTER" hgap="2.0" vgap="2.0">
-                           <padding>
-                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                           </padding>
-                        </FlowPane>
-                     </content>
-                  </ScrollPane>
-               </content>
-            </Tab>
-            <Tab>
-               <content>
-                  <ScrollPane fitToHeight="true" fitToWidth="true">
-                     <content>
-                        <FlowPane fx:id="solutionBox11" alignment="CENTER" columnHalignment="CENTER" hgap="2.0" vgap="2.0">
-                           <padding>
-                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                           </padding>
-                        </FlowPane>
-                     </content>
-                  </ScrollPane>
-               </content>
-            </Tab>
-            <Tab>
-               <content>
-                  <ScrollPane fitToHeight="true" fitToWidth="true">
-                     <content>
-                        <FlowPane fx:id="solutionBox111" alignment="CENTER" columnHalignment="CENTER" hgap="2.0" vgap="2.0">
-                           <padding>
-                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                           </padding>
-                        </FlowPane>
-                     </content>
-                  </ScrollPane>
-               </content>
-            </Tab>
-            <Tab>
-               <content>
-                  <ScrollPane fitToHeight="true" fitToWidth="true">
-                     <content>
-                        <FlowPane fx:id="solutionBox1111" alignment="CENTER" columnHalignment="CENTER" hgap="2.0" vgap="2.0">
-                           <padding>
-                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                           </padding>
-                        </FlowPane>
-                     </content>
-                  </ScrollPane>
-               </content>
-            </Tab>
-         </tabs>
-      </TabPane>
       <TextArea fx:id="serverChatTextArea" editable="false" layoutX="739.0" layoutY="37.0" prefHeight="459.0" prefWidth="318.0" AnchorPane.bottomAnchor="31.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="37.0" />
-      <Label contentDisplay="CENTER" layoutX="618.0" layoutY="20.0" text="THIS IS THE PROBLEM" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" AnchorPane.leftAnchor="618.0" AnchorPane.topAnchor="20.0" />
+      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="7.0" layoutY="37.0" prefHeight="459.0" prefWidth="728.0" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="326.0" AnchorPane.topAnchor="37.0">
+         <content>
+            <FlowPane fx:id="solutionBox" alignment="CENTER" columnHalignment="CENTER" hgap="2.0" prefHeight="423.0" prefWidth="732.0" vgap="2.0">
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding>
+            </FlowPane>
+         </content>
+      </ScrollPane>
+      <Label fx:id="CurrentDiscussion" alignment="CENTER" contentDisplay="CENTER" layoutX="257.0" layoutY="37.0" text="THIS IS THE PROBLEM" textAlignment="CENTER" textFill="#49a7b9" textOverrun="WORD_ELLIPSIS" AnchorPane.rightAnchor="596.0" AnchorPane.topAnchor="37.0">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="675.0" layoutY="9.0" mnemonicParsing="false" text="Go Back" AnchorPane.rightAnchor="326.0" AnchorPane.topAnchor="9.0" />
    </children>
 </AnchorPane>
