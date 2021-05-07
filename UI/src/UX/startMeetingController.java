@@ -11,8 +11,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Random;
 
 import java.net.URL;
@@ -44,10 +49,11 @@ public class startMeetingController implements Initializable {
 
     }
 
-    public void startNewMeetingClicked(ActionEvent actionEvent) {
+    public void startNewMeetingClicked(ActionEvent actionEvent) throws UnknownHostException {
         if(getNewMeetingID.getText().equals("Meeting ID : ")) {
             // set an meeting id
-            saveID = getSysIp();
+
+            saveID =getSysIp();
             getNewMeetingID.setText(getNewMeetingID.getText() + saveID);
             getNewMeetingID.getStyleClass().add("copyable-label");
             getNewMeetingID.setVisible(true); // show it to the user
@@ -97,6 +103,7 @@ public class startMeetingController implements Initializable {
 
     public void reallyStartNewMeetingButtonClicked(ActionEvent actionEvent) {
         // move to the next scene
+        copyToClipboard(saveID);
         setHostbuttonClicked(true);
     }
 
@@ -132,4 +139,11 @@ public class startMeetingController implements Initializable {
 
         return systemipaddress;
     }
+
+    public static void copyToClipboard(String str){
+        StringSelection stringSelection = new StringSelection(str);
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard.setContents(stringSelection, null);
+    }
+
 }

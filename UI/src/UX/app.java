@@ -100,13 +100,14 @@ public class app extends Application {
         startMeetingController.setUserNameLabel(user.getName());
         startMeetingController.setUserImageView(user.getPic());
         this.primaryStage.setScene(startMeetingScene);
-        hostIP = startMeetingController.getSaveID();
-        de = new DisscusionEngine();
-        client = new Client(de,hostIP,12212);
+
+
         startMeetingController.buttonClickedProperty().addListener((source)->{
             if(startMeetingController.isButtonClicked()){
                 try {
-
+                    hostIP = startMeetingController.getSaveID();
+                    de = new DisscusionEngine();
+                    client = new Client(de,hostIP,12212);
                     initThirdWindow();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -116,7 +117,10 @@ public class app extends Application {
         startMeetingController.hostbuttonClickedProperty().addListener((source)->{
             if(startMeetingController.isHostbuttonClicked()){
                 try {
+                    hostIP = startMeetingController.getSaveID();
                     user.setHost(true);
+                    de = new DisscusionEngine();
+                    client = new Client(de,hostIP,12212);
                     initThirdWindow();
                 } catch (IOException e) {
                     e.printStackTrace();
