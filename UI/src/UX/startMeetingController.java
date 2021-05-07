@@ -13,6 +13,8 @@ import javafx.scene.text.Text;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Random;
 
 import java.net.URL;
@@ -44,10 +46,11 @@ public class startMeetingController implements Initializable {
 
     }
 
-    public void startNewMeetingClicked(ActionEvent actionEvent) {
+    public void startNewMeetingClicked(ActionEvent actionEvent) throws UnknownHostException {
         if(getNewMeetingID.getText().equals("Meeting ID : ")) {
             // set an meeting id
-            saveID = getSysIp();
+
+            saveID =getSysIp();
             getNewMeetingID.setText(getNewMeetingID.getText() + saveID);
             getNewMeetingID.getStyleClass().add("copyable-label");
             getNewMeetingID.setVisible(true); // show it to the user
