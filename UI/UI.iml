@@ -10,5 +10,6 @@
     <orderEntry type="module" module-name="Server" />
     <orderEntry type="module" module-name="Chat" />
     <orderEntry type="module" module-name="Dto" />
+    <orderEntry type="module" module-name="Client" />
   </component>
 </module>

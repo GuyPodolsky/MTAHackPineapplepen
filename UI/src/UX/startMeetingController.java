@@ -28,6 +28,7 @@ public class startMeetingController implements Initializable {
     public Button reallyStartNewMeetingButton;
     public ImageView userImageView;
     private BooleanProperty buttonClicked = new SimpleBooleanProperty(this, "Button clicked");
+    private BooleanProperty HostbuttonClicked = new SimpleBooleanProperty(this, "Button clicked");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -85,10 +86,22 @@ public class startMeetingController implements Initializable {
 
     public void reallyStartNewMeetingButtonClicked(ActionEvent actionEvent) {
         // move to the next scene
-        setButtonClicked(true);
+        setHostbuttonClicked(true);
     }
 
     public void setUserImageView(Image photo){
         userImageView.setImage(photo);
+    }
+
+    public boolean isHostbuttonClicked() {
+        return HostbuttonClicked.get();
+    }
+
+    public BooleanProperty hostbuttonClickedProperty() {
+        return HostbuttonClicked;
+    }
+
+    public void setHostbuttonClicked(boolean hostbuttonClicked) {
+        this.HostbuttonClicked.set(hostbuttonClicked);
     }
 }

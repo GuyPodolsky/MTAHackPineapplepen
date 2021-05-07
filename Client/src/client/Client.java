@@ -1,3 +1,4 @@
+package client;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -11,7 +12,7 @@ public class Client {
 
         InetSocketAddress hostAddress = new InetSocketAddress("localhost", 8090);
         try (SocketChannel client = SocketChannel.open(hostAddress)) {
-            //System.out.println("Client... started");
+            //System.out.println("client.Client... started");
             String threadName = Thread.currentThread().getName();
 
             // Send messages to server

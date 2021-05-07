@@ -1,3 +1,5 @@
+import client.Data;
+
 import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketAddress;
@@ -5,7 +7,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 
-public class ReceiveThread implements Runnable {
+class ReceiveThread implements Runnable {
 
     final Data data;
     SelectionKey selectionKey;

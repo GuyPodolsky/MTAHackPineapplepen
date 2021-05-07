@@ -1,5 +1,6 @@
 package UX;
 
+import client.Client;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
@@ -7,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import server.DisscusionEngine;
 import server.User;
 
 import java.awt.*;
@@ -27,6 +29,8 @@ public class app extends Application {
     private startMeetingController startMeetingController;
     //private I user; //TODO:
     User user;
+    private DisscusionEngine de;
+    private Client client;
 
 
 
@@ -96,6 +100,16 @@ public class app extends Application {
         startMeetingController.buttonClickedProperty().addListener((source)->{
             if(startMeetingController.isButtonClicked()){
                 try {
+
+                    initThirdWindow();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        startMeetingController.hostbuttonClickedProperty().addListener((source)->{
+            if(startMeetingController.isHostbuttonClicked()){
+                try {
                     user.setHost(true);
                     initThirdWindow();
                 } catch (IOException e) {
@@ -115,6 +129,7 @@ public class app extends Application {
         Parent load = fl.load(url.openStream());
         disccushController = fl.getController();
         disccushController.setUser(user);
+
         disccushScene = new Scene(load, 600, 600);
         this.primaryStage.setScene(disccushScene);
     }
