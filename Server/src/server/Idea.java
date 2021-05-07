@@ -29,6 +29,14 @@ public class Idea {
         dislikes = 0;
     }
 
+    public Idea(String text,int _id) {
+        ideaText = text;
+        owner= null;
+        ID = _id;
+        likes = 0;
+        dislikes = 0;
+    }
+
     public User getOwner() {
         return owner;
     }

@@ -1,5 +1,3 @@
-import client.Data;
-
 import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketAddress;
@@ -7,14 +5,14 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 
-class ReceiveThread implements Runnable {
+public class ServerReceiveThread implements Runnable {
 
     final Data data;
     SelectionKey selectionKey;
     SocketChannel channel;
     ByteBuffer buffer;
 
-    ReceiveThread(Data data, SelectionKey key) {
+    ServerReceiveThread(Data data, SelectionKey key) {
         this.data = data;
         selectionKey = key;
         channel = (SocketChannel) key.channel();
