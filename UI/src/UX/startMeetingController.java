@@ -49,6 +49,7 @@ public class startMeetingController implements Initializable {
             // set an meeting id
             saveID = getSysIp();
             getNewMeetingID.setText(getNewMeetingID.getText() + saveID);
+            getNewMeetingID.getStyleClass().add("copyable-label");
             getNewMeetingID.setVisible(true); // show it to the user
             reallyStartNewMeetingButton.setVisible(true);
             startNewMeetingButton.setDisable(true);

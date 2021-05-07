@@ -1,5 +1,6 @@
 package UX;
 
+import client.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,8 +45,8 @@ public class problemSceneController implements Initializable {
     TabPane AllTabs;
     Tab currentTab;
     private User user;
-    private int solutionID;
-    Object object;
+
+    private Client client;
 
 
     private boolean isAdmin; // For Delete
@@ -95,4 +96,11 @@ public class problemSceneController implements Initializable {
     }
 
 
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Client getClient() {
+        return client;
+    }
 }
