@@ -5,14 +5,14 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 
-public class ReceiveThread implements Runnable {
+public class ServerReceiveThread implements Runnable {
 
     final Data data;
     SelectionKey selectionKey;
     SocketChannel channel;
     ByteBuffer buffer;
 
-    ReceiveThread(Data data, SelectionKey key) {
+    ServerReceiveThread(Data data, SelectionKey key) {
         this.data = data;
         selectionKey = key;
         channel = (SocketChannel) key.channel();

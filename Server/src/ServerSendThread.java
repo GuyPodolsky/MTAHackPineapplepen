@@ -5,7 +5,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 import java.util.Scanner;
 
-public class SendThread implements Runnable {
+public class ServerSendThread implements Runnable {
 
     final Data data;
     SelectionKey selectionKey;
@@ -13,7 +13,7 @@ public class SendThread implements Runnable {
     ByteBuffer buffer;
 
 
-    SendThread(Data data, SelectionKey key) {
+    ServerSendThread(Data data, SelectionKey key) {
         this.data = data;
         selectionKey = key;
     }
