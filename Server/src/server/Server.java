@@ -22,7 +22,7 @@ public class Server {
     private final InetSocketAddress listenAddress;
     private boolean alive = true;
 
-    public Server(String address, int port) throws IOException {
+    public Server(DisscusionEngine de, String address, int port) throws IOException {
         listenAddress = new InetSocketAddress(address, port);
         dataMapper = new HashMap<>();
     }

@@ -13,6 +13,7 @@ public class BubbleSolutionController implements Initializable {
     public Button disLikeButton;
     public Button likeButton;
     private String ID;
+    private int likes;
     // ** bubbleSolution
 
     @Override
@@ -31,5 +32,6 @@ public class BubbleSolutionController implements Initializable {
 
     public void likeButtonClicked(ActionEvent actionEvent) {
         // update server
+
     }
 }
