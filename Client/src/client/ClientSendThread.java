@@ -11,9 +11,12 @@ public class ClientSendThread implements Runnable {
     ByteBuffer buffer;
     Scanner input = new Scanner(System.in);
     final Data data;
+    InetSocketAddress hostAdress;
 
-    public ClientSendThread(Data data) {
+
+    public ClientSendThread(Data data, InetSocketAddress hostAddress) {
         this.data = data;
+        this.hostAdress = hostAddress;
     }
 
     @Override
@@ -25,13 +28,16 @@ public class ClientSendThread implements Runnable {
             // Send messages to server
 
             while (true) {
+                synchronized (data) {
+                    data.wait();
+                }
 
-                byte[] messageBytes = input.nextLine().getBytes();
+                byte[] messageBytes = data.receive().getBytes();
                 buffer = ByteBuffer.wrap(messageBytes);
                 client.write(buffer);
                 buffer.clear();
             }
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
     }

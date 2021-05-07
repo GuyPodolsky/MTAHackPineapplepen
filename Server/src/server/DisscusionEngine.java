@@ -17,6 +17,11 @@ public class DisscusionEngine {
         disChat = new ChatEngine();
     }
 
+    public DisscusionEngine() {
+        disTree = null;
+        disChat = new ChatEngine();
+    }
+
     public DisscusionEngine(IdeaNode root, ChatEngine chat) {
         disTree= root;
         disChat = chat;
@@ -35,7 +40,12 @@ public class DisscusionEngine {
     }
 
     public void addIdea(IdeaNode ideaNode) {
-        disTree.addIdea(ideaNode);
+        if(disTree != null) {
+            disTree.addIdea(ideaNode);
+        }
+        else {
+            disTree = ideaNode;
+        }
     }
 
     public void addIdea(Idea idea) {

@@ -9,9 +9,11 @@ public class ClientReceiveThread implements Runnable {
 
     final Data data;
     ByteBuffer buffer;
+    InetSocketAddress hostAddress;
 
-    ClientReceiveThread(Data data) {
+    ClientReceiveThread(Data data, InetSocketAddress hostAddress) {
         this.data = data;
+        this.hostAddress = hostAddress;
         buffer = ByteBuffer.allocate(1024);
     }
 
