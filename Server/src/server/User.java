@@ -11,23 +11,23 @@ import java.util.Objects;
 
 public class User implements Serializable {
     private String name;
-    private Node pic;
+    private BufferedImage pic; //node
     private int id;
     private static int idGenerator =1; //starts from one and grow each user
     private boolean isHost;         // only when pressed new meeting
     private final String saverFile = "Server\\src\\resource\\saver.bin";
 
     public String getName() { return name; }
-    public Node getPic() { return pic; }
+    public BufferedImage getPic() { return pic; } //node
     public int getId() { return id; }
     public boolean getIsHost() { return isHost; }
 
     public void setName(String name) { this.name = name; }
-    public void setPic(Node pic) { this.pic = pic; }
+    public void setPic(BufferedImage pic) { this.pic = pic; }
     public void setHost(boolean host) { isHost = host; }
 
     //first time ctor    // save to text first time use
-    public User(String name, String photoLink) {
+   /* public User(String name, String photoLink) {
         this.id = idGenerator;
         idGenerator++;
         this.name = name;
@@ -42,7 +42,7 @@ public class User implements Serializable {
         pic.setMouseTransparent(true);
 
         saver(); // save to file
-    }
+    }*/
 
     public User(String name, File photo) {
         this.id = idGenerator;
@@ -50,9 +50,9 @@ public class User implements Serializable {
         this.name = name;
         this.isHost = false;
 
-        BufferedImage bImage = null;
+        //BufferedImage bImage = null;
         try {
-            bImage = ImageIO.read(photo);
+            pic = ImageIO.read(photo);
         } catch (IOException e) {
         System.out.println("Exception occured :" + e.getMessage());
     }
