@@ -16,6 +16,7 @@ import server.User;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class problemSceneController implements Initializable {
@@ -46,12 +47,15 @@ public class problemSceneController implements Initializable {
     Tab currentTab;
     private User user;
 
+
     private Client client;
 
 
     private boolean isAdmin; // For Delete
     private boolean isUser; /// For Delete
     private AnchorPane currentDiscussion;
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
