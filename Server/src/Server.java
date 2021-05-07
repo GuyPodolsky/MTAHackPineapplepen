@@ -12,15 +12,15 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-//example taken from: http://examples.javacodegeeks.com/core-java/nio/java-nio-socket-example/
 public class Server {
 
     private Selector selector;
     private final Map<SocketChannel, List<byte[]>> dataMapper;
     private final InetSocketAddress listenAddress;
-    private SocketChannel channel;
+    private boolean alive = true;
 
     public Server(String address, int port) throws IOException {
         listenAddress = new InetSocketAddress(address, port);
@@ -39,7 +39,7 @@ public class Server {
 
         System.out.println("Server started...");
 
-        while (true) {
+        while (alive) {
             // wait for events
             this.selector.select();
 
@@ -80,7 +80,7 @@ public class Server {
 
     //read from the socket channel
     private void read(SelectionKey key) throws IOException {
-        channel = (SocketChannel) key.channel();
+        SocketChannel channel = (SocketChannel) key.channel();
         ByteBuffer buffer = ByteBuffer.allocate(1024);
         int numRead = -1;
         numRead = channel.read(buffer);
@@ -97,21 +97,35 @@ public class Server {
         else {
             byte[] data = new byte[numRead];
             System.arraycopy(buffer.array(), 0, data, 0, numRead);
-            System.out.println("Server got: " + new String(data));
+            String msgToSend = analyseMessage(new String(data));
+            write(msgToSend);
         }
     }
 
-    private String analyseMessage(String msg) {
+    private void write(String msg) throws IOException {
+        for(SocketChannel sc : this.dataMapper.keySet()) {
+            sc.write(ByteBuffer.wrap(msg.getBytes(StandardCharsets.UTF_8)));
+        }
+    }
+
+    private String analyseMessage(String msg) throws IOException {
         if(msg.length() >= 3) {
             switch(msg.substring(0,3)) {
                 case "AID":
                     int ideaID = Idea.getIDGen();
                     return "AID " + String.valueOf(ideaID) + " " + msg.substring(3);
-                    break;
                 case "EXT": {
-                    for ()
+                    for (SocketChannel sc : this.dataMapper.keySet()) {
+                        sc.close();
+                        alive = false;
+                        return new String("");
+                    }
+                    break;
                 }
+                default:
+                    return msg;
             }
         }
+        return new String("");
     }
 }
